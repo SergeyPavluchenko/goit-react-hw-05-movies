@@ -1,18 +1,15 @@
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import Link from './Layout.styled';
 
 const Layout = () => {
   return (
-    <div>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-      </nav>
-      <Suspense>
-        <Outlet />
-      </Suspense>
-    </div>
+    <>
+      <header>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/movies">Movies</Link>
+        </nav>
+      </header>
+    </>
   );
 };
 
