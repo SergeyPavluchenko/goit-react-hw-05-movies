@@ -18,10 +18,20 @@ export const MovieLi = styled.li`
   border-radius: 5px;
   text-decoration: none;
   border: 2px;
+  margin-top: 5px;
 `;
 
 export const MovieImg = styled.img`
-  width: 100%;
+  display: 'block';
+  width: 240px;
+  height: 360px;
+  border-radius: 5px;
+  margin-left: 50px;
+
+  &:hover {
+    transform: scale(1.03);
+    transition: 250ms;
+  }
 `;
 export const MovieTitle = styled.h3`
   margin-bottom: 30px;

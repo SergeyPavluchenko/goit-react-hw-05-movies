@@ -9,12 +9,13 @@ export async function getTrending() {
   return response;
 }
 
-export async function searchMovie(searchQuery) {
+export async function getMovies(searchQuery) {
   const { data } = await axios.get(
     `/search/movie?api_key=${key}&language=en-US&page=1&query=${searchQuery}`
   );
-  const response = data.results;
-  return response;
+  // const { results } = data;
+  // return { results };
+  return data.results;
 }
 
 export async function getMovieDeteils(id) {
