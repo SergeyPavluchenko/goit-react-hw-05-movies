@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const MovieListUl = styled.ul`
   display: flex;
@@ -9,7 +10,7 @@ export const MovieListUl = styled.ul`
   gap: 15px 15px;
 `;
 
-export const MovieLi = styled.li`
+export const MovieNavLink = styled(NavLink)`
   width: 100%;
   flex-basis: calc(100% / 4 - 26px);
   padding: 5px;

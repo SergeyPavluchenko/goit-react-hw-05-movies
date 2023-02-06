@@ -1,27 +1,28 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
+// import Reviews from './Reviews/Reviews.js';
 const Home = lazy(() => import('../routes/Home/Home.js'));
 const Movies = lazy(() => import('../routes/Movies/Movies.js'));
 const MovieDetails = lazy(() =>
   import('../routes/MovieDeleils/MovieDeteils.js')
 );
 const Layout = lazy(() => import('../components/layout/Layout.js'));
+const Cast = lazy(() => import('../components/Cast/Cast.js'));
+const Reviews = lazy(() => import('../components/Reviews/Reviews.js'));
 
 export function App() {
   return (
     <>
-      {/* <Layout /> */}
-      {/* <MovieDetails /> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route
             path="/movies/:movieId"
-            element={<MovieDetails path={'/movies'} />}
+            element={<MovieDetails path={'/movieId'} />}
           >
-            <Route />
-            <Route />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
           <Route path="/*" element={<h1>Page is not found...</h1>} />
         </Route>

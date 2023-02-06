@@ -1,7 +1,19 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDeteils } from '../../API';
+
+import {
+  ButtonGoBack,
+  BackLink,
+  MovieDeteilsBox,
+  ImgStyled,
+  BoxLInk,
+  BoxInfo,
+  BoxInfoTitle,
+  BoxInfoText,
+  BoxNavLink,
+  BoxInfoNavLink,
+} from './MovieDeteils.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -24,38 +36,50 @@ const MovieDetails = () => {
   return (
     <>
       {details && (
-        <div>
-          <div>
-            <NavLink to={location?.state?.from ?? '/'}> ⇦ Go back</NavLink>
-            <img
+        <MovieDeteilsBox>
+          <BoxLInk>
+            <ButtonGoBack>
+              {' '}
+              <BackLink to={location.state?.from ?? '/'}>Go back</BackLink>
+            </ButtonGoBack>
+            <ImgStyled
               src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
               // src={details.poster_path}
               alt={details.title}
             />
-          </div>
-          <div>
-            <h2>
+          </BoxLInk>
+          <BoxInfo>
+            <BoxInfoTitle>
               {details.title} ({details.release_date})
-            </h2>
-            <p>User score: {details.vote_average}</p>
-            <h2>Overview</h2>
-            <p>{details.overview}</p>
-            <h2>Genres</h2>
-            <p> {details.genres.map(genre => genre.name).join(', ')}</p>
-          </div>
-        </div>
+            </BoxInfoTitle>
+            <BoxInfoText>User score: {details.vote_average}</BoxInfoText>
+            <BoxInfoTitle>Overview</BoxInfoTitle>
+            <BoxInfoText>{details.overview}</BoxInfoText>
+            <BoxInfoTitle>Genres</BoxInfoTitle>
+            <BoxInfoText>
+              {' '}
+              {details.genres.map(genre => genre.name).join(', ')}
+            </BoxInfoText>
+          </BoxInfo>
+        </MovieDeteilsBox>
       )}
-      <div>
+      <BoxNavLink>
         <h2>Additional information</h2>
         <ul>
-          <NavLink to="cast" state={{ from: location?.state?.from ?? '/' }}>
+          <BoxInfoNavLink
+            to="cast"
+            state={{ from: location?.state?.from ?? '/' }}
+          >
             Cast
-          </NavLink>
-          <NavLink to="reviews" state={{ from: location?.state?.from ?? '/' }}>
+          </BoxInfoNavLink>
+          <BoxInfoNavLink
+            to="reviews"
+            state={{ from: location?.state?.from ?? '/' }}
+          >
             Reviews
-          </NavLink>
+          </BoxInfoNavLink>
         </ul>
-      </div>
+      </BoxNavLink>
       <Outlet />
     </>
   );
